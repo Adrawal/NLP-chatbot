@@ -1,0 +1,30 @@
+version: "2.0"
+
+stories:
+
+- story: 2greet_mood_great_restaurantSearch_tellingLocation_tellingCuisine_tablebooking
+  steps:
+  - intent: greet
+  - action: action_bot_greet
+  - intent: mood_great
+  - action: utter_ask_location
+  - intent: telling_location
+  - action: action_set_location
+  - slot_was_set:
+    - location: Hyderabad
+  - action: utter_ask_cuisine
+  - intent: telling_cuisine
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: action_show_restaurants
+  - action: utter_ask_for_booking
+  - intent: affirm
+  - action: restaurant_form
+  - active_loop: restaurant_form
+  - active_loop: null
+  - action: action_get_date_time
+  - action: utter_slot_values
+  - intent: goodbye
+  - action: utter_goodbye
